@@ -15,26 +15,23 @@
     <script src="js/fileinput.js" type="text/javascript"></script>
     <script src="js/theme.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-    
 
 </head>
-<body>
-    <div class="container kv-main">
-        <div class="page-header">
-            <h1>Welcome to WhiskMe!</h1>
-        </div>
-        <form enctype="multipart/form-data">
-            <input id="file-0a" class="file" type="file" data-min-file-count="1"> <br />
-            <input type = "submit" id = "submit-btn" class = "btn btn-primary btn-block" value = "Submit" onclick =""> </input>
-        </form>    
-              
-    </div>  
-   
-    <!--       
-    <form method = "post" action = "">  
-    <div class="form-group"> 
+<body> 
+    <h2> The image you uploaded shows . Is this correct?
+
+    </h2>
+
+    
+    <form>  
+        <input type = "radio" id ="CorrectBottle" value = "Yes" checked> Yes <br>
+        <input type = "radio" id = "CorrectBottle" value = "No"> No <br>
+        <h2>If not, please type in the correct name of the bottle.<Br> </h2>
+        <input type = "text" id = "bottleName"> <br>
+    
+    <!-- <div class="form-group"> -->
         <h2> Please select your first preference. </h2>
-        <select class="selectpicker" name = "prefone" >
+        <select class="selectpicker" id = "prefone" >
             <option>Aberfeldy</option>
             <option>Aberlour</option>
             <option>AnCnoc</option>
@@ -122,10 +119,10 @@
             <option>Tormore</option>
             <option>Tullibardine</option>
         </select>
-    </div>
-    <div class="form-group"> 
+    <!-- </div>
+    <div class="form-group"> -->
         <h2>Please select your second preference</h2>
-            <select class="selectpicker" name = "preftwo" >
+            <select class="selectpicker" id = "preftwo" >
                 <option>Aberfeldy</option>
                 <option>Aberlour</option>
                 <option>AnCnoc</option>
@@ -213,56 +210,32 @@
                 <option>Tormore</option>
                 <option>Tullibardine</option>
             </select>
-        </div> 
+        <!-- </div> -->
         <br>
         <br>
-        <input type ="submit" class = "btn btn-primary btn-block" onClick = "return f(this.form, this.form.prefone, this.form.preftwo)" ></input>
+        <input type ="submit" id = "submitRequest" class = "btn btn-primary btn-block" value = "Submit"></input>
         </form> 
-    -->
 </body>
 
 
+<script>
+    var apiUrl = " ";
+    $('#submitRequest').click(function(event) {
+        var firstPref = $('#prefone').val();
+        var secondPref = $('#preftwo').val();
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", apiUrl,false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        var response = JSON.parse(xhttp.responseText);
+
+        
+
+    });
+</script>
+
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
